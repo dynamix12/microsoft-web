@@ -1,0 +1,20 @@
+.img {
+  max-width: 70vw;
+  aspect-ratio: 3/1;
+  object-fit: cover;
+  object-position: 0% 25%;
+  border-radius: 5px;
+}
+
+.heading {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.paragraph {
+  text-align: justify;
+}
+
+.section {
+  margin: 2.5rem 0;
+}
