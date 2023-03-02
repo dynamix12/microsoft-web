@@ -6,7 +6,7 @@ export class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <img
           className={styles.img}
           alt='animals in the zoo'

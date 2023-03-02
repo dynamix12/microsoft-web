@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styles from './login.module.css';
+import styles from './register.module.css';
 
-export class Login extends Component {
+export class Register extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h1 className={styles.heading}>Login to our website</h1>
+        <h1 className={styles.heading}>Sign Up into our website</h1>
         <form action='/asd' method='post'>
           <div className={styles.imgContainer}>
             <img
@@ -16,10 +16,22 @@ export class Login extends Component {
           </div>
 
           <div className={styles.container}>
+            <label htmlFor='name'>
+              <b>Name</b>
+            </label>
+            <input
+              id='name'
+              type='text'
+              placeholder='Enter Name'
+              name='name'
+              required
+            />
+
             <label htmlFor='uname'>
               <b>Username</b>
             </label>
             <input
+              id='uname'
               type='text'
               placeholder='Enter Username'
               name='uname'
@@ -30,34 +42,24 @@ export class Login extends Component {
               <b>Password</b>
             </label>
             <input
+              id='psw'
               type='password'
               placeholder='Enter Password'
               name='psw'
               required
             />
-
-            <button type='submit'>Login</button>
-            <label>
-              <input
-                onChange={() => {}}
-                type='checkbox'
-                checked='checked'
-                name='remember'
-              />{' '}
-              Remember me
+            <label htmlFor='psw2'>
+              <b>Repeat Password</b>
             </label>
-          </div>
+            <input
+              id='psw2'
+              type='password'
+              placeholder='Repeat Password'
+              name='psw2'
+              required
+            />
 
-          <div
-            className={`${styles.container} ${styles.formFooter}`}
-            style={{ backgroundColor: '#f1f1f1' }}
-          >
-            <span className={styles.psw}>
-              Don't have an account?<a href='/register'> Sign Up</a>
-            </span>
-            <span className={styles.psw}>
-              Forgot <a href='#'>password?</a>
-            </span>
+            <button type='submit'>Sign Up</button>
           </div>
         </form>
       </div>

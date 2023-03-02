@@ -1,6 +1,7 @@
 import { Gallery } from './components/gallery/Gallery';
 import { Login } from './components/login/Login';
 import { Home } from './components/home/Home';
+import { Register } from './components/register/Register';
 
 const AppRoutes = [
   {
@@ -14,6 +15,10 @@ const AppRoutes = [
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ];
 
