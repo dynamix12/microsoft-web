@@ -1,6 +1,6 @@
 import { Gallery } from './components/gallery/Gallery';
-import { Login } from './components/login/Login';
-import { Home } from './components/home/Home';
+import Login from './components/login/Login';
+import Home from './components/home/Home';
 import { Register } from './components/register/Register';
 import { Location } from './components/location/Location';
 import { FAQ } from './components/FAQ/FAQ';

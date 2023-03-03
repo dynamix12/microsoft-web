@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -10,76 +10,91 @@ import {
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+const NavMenu = () => {
+  const [collapsed, setCollapsed] = useState(true);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
-  constructor(props) {
-    super(props);
+  const logout = () => {
+    localStorage.removeItem('user');
+    setUser(undefined);
+  };
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true,
-    };
-  }
+  const toggleNavbar = () => {
+    setCollapsed(!collapsed);
+  };
 
-  toggleNavbar() {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  }
-
-  render() {
-    return (
-      <header>
-        <Navbar
-          className='navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3'
-          container
-          light
+  return (
+    <header>
+      <Navbar
+        className='navbar-expand-md navbar-toggleable-sm ng-white border-bottom box-shadow mb-3'
+        container
+        light
+      >
+        <NavbarBrand tag={Link} to='/'>
+          Zoo Sofia
+        </NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className='mr-2' />
+        <Collapse
+          className='d-md-inline-flex flex-sm-row-reverse'
+          isOpen={!collapsed}
+          navbar
         >
-          <NavbarBrand tag={Link} to='/'>
-            Zoo Sofia
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
-          <Collapse
-            className='d-sm-inline-flex flex-sm-row-reverse'
-            isOpen={!this.state.collapsed}
-            navbar
-          >
-            <ul className='navbar-nav flex-grow'>
-              <NavItem>
-                <NavLink tag={Link} className='text-dark' to='/'>
-                  Home
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className='text-dark' to='/gallery'>
-                  Gallery
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className='text-dark' to='/location'>
-                  Location
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className='text-dark' to='/FAQ'>
-                  FAQ
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className='text-dark' to='/workTime'>
-                  Working hours
-                </NavLink>
-              </NavItem>
+          <ul className='navbar-nav flex-grow'>
+            <NavItem>
+              <NavLink tag={Link} className='text-dark' to='/'>
+                Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} className='text-dark' to='/gallery'>
+                Gallery
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} className='text-dark' to='/location'>
+                Location
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} className='text-dark' to='/FAQ'>
+                FAQ
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} className='text-dark' to='/workTime'>
+                Working hours
+              </NavLink>
+            </NavItem>
+            {user ? (
+              <>
+                <NavItem>
+                  <NavLink tag={Link} className='text-dark user' to='/'>
+                    {user.name}
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    onClick={() => logout()}
+                    tag={Link}
+                    className='text-dark logout'
+                    to='/'
+                  >
+                    Logout
+                  </NavLink>
+                </NavItem>
+              </>
+            ) : (
               <NavItem>
                 <NavLink tag={Link} className='text-dark' to='/login'>
                   Login
                 </NavLink>
               </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
-      </header>
-    );
-  }
-}
+            )}
+          </ul>
+        </Collapse>
+      </Navbar>
+    </header>
+  );
+};
+
+export default NavMenu;
